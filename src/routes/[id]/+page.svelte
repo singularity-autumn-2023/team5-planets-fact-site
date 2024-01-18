@@ -1,6 +1,8 @@
 <script lang="ts">
-	export let data;
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
-<h1>{data}</h1>
+<h1>{data.planet.name}</h1>
 

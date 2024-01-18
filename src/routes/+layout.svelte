@@ -1,12 +1,10 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/Header.svelte';
+	import type { LayoutData } from './$types';
 
-	export let data;
-	console.log(data);
+	export let data: LayoutData;
 </script>
 
-<Header planets={['mercury', 'venus']}/>
-
-{data}
+<Header planets={data.planets}/>
 
 <slot />
