@@ -5,4 +5,3 @@
 </script>
 
 <h1>{data.planet.name}</h1>
-
