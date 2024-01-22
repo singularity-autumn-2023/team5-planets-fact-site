@@ -1,5 +1,5 @@
 import { baseUrl } from '$lib/baseUrl';
-import type { PlanetsList } from '../../types/planetsList';
+import type { PlanetsList } from '../types/planetsList';
 
 type ResponseBody = {
 	count: number;

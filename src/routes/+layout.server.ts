@@ -1,5 +1,5 @@
 import type { LayoutServerLoad } from './$types';
-import fetchPlanets from '$lib/services/fetchPlanets';
+import fetchPlanets from '../services/fetchPlanets';
 import type { PlanetsList } from '../types/planetsList';
 
 export const load: LayoutServerLoad<Promise<{planets: PlanetsList | []}>> = async () => {
