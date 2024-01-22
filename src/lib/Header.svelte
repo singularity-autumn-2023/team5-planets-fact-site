@@ -1,8 +1,7 @@
 <script lang="ts">
-	export let planets: {
-		id: string;
-		name: string;
-	}[];
+	import type { PlanetsList } from '../types/planetsList';
+
+	export let planets: PlanetsList;
 
 	let isMobileMenuOpen: boolean = false;
 

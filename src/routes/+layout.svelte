@@ -7,4 +7,6 @@
 
 <Header planets={data.planets}/>
 
-<slot />
+<main>
+	<slot />
+</main>
