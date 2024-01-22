@@ -1,15 +1,11 @@
 <script lang="ts">
+	import Menu from '$lib/Menu.svelte';
+
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
 
+<Menu />
+
 <h1>{data.planet.name}</h1>
-<h1>{data.planet.radius}</h1>
-
-
-<style>
-	:root {
-			color: white;
-	}
-</style>
