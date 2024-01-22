@@ -8,7 +8,7 @@ type ResponseBody = {
 	data: PlanetsList;
 }
 
-export const load: LayoutServerLoad<Promise<{planets: PlanetsList}>> = async ({ fetch }) => {
+export const load: LayoutServerLoad = async ({ fetch }) => {
 	try {
 		const res = await fetch(baseUrl);
 		if (!res.ok) {

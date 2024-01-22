@@ -5,3 +5,11 @@
 </script>
 
 <h1>{data.planet.name}</h1>
+<h1>{data.planet.radius}</h1>
+
+
+<style>
+	:root {
+			color: white;
+	}
+</style>
