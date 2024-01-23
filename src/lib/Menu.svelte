@@ -15,3 +15,26 @@
 		</li>
 	</ul>
 </div>
+
+<style>
+	li {
+		border-bottom: 0.25rem solid var(--color-mercury);
+	}
+
+	a {
+		color: #fff;
+		text-align: center;
+		font-family: var(--font-secondary);
+		font-size: 0.5625rem;
+		font-style: normal;
+		font-weight: 700;
+		line-height: normal;
+		letter-spacing: 0.12056rem;
+		text-transform: uppercase;
+		text-decoration: none;
+
+		& span {
+			display: none;
+		}
+	}
+</style>

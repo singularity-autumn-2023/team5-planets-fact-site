@@ -1,0 +1,12 @@
+:root {
+	--color-bg: hsla(30, 38%, 92%, 1);
+	--color-text-primary: tomato;
+	--color-text-secondary: hsla(228, 12%, 48%, 1);
+	--color-accent: hsla(157, 36%, 37%, 1);
+	--color-accent-hover: hsla(157, 43%, 18%, 1);
+
+	--color-mercury: hsla(194, 48%, 49%, 1);
+
+	--font-primary: 'Antonio Variable', sans-serif;
+	--font-secondary: 'League Spartan Variable', sans-serif;
+}
