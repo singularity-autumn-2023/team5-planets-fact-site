@@ -31,14 +31,18 @@
 	function getFormattedTime(ms: number) {
 		const hs = ms / 1000 / 60 / 60;
 		if (hs <= 24) {
-			return hs.toFixed(2) + ' hours';
+			return toFixedIfNecessary(hs) + ' hours';
 		}
 		const days = hs / 24;
 		if (days <= 366) {
-			return days.toFixed(2) + ' days';
+			return toFixedIfNecessary(days) + ' days';
 		}
-		return (days / 365).toFixed(2) + ' years';
-	}
+		return toFixedIfNecessary(days / 365) + ' years';
+
+		function toFixedIfNecessary(value, dp = 2){
+				return +parseFloat(value).toFixed(dp);
+			}
+		}
 
 	const img = {
 		earth: {
