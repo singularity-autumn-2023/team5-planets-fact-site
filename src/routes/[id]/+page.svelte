@@ -205,7 +205,7 @@
 			<h3
 				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				{data.planet.radius / 1000} KM
+				{(data.planet.radius / 1000).toLocaleString()} KM
 			</h3>
 		</div>
 		<div
