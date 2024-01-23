@@ -8,7 +8,7 @@
 	import Neptune from '$lib/images/planet-neptune.svg';
 	import Saturn from '$lib/images/planet-saturn.svg';
 	import Uranus from '$lib/images/planet-uranus.svg';
-	import Venus from '$lib/images/planet-venus.svg'
+	import Venus from '$lib/images/planet-venus.svg';
 	import EarthStructure from '$lib/images/planet-earth-internal.svg';
 	import JupiterStructure from '$lib/images/planet-jupiter-internal.svg';
 	import MarsStructure from '$lib/images/planet-mars-internal.svg';
@@ -16,15 +16,30 @@
 	import NeptuneStructure from '$lib/images/planet-neptune-internal.svg';
 	import SaturnStructure from '$lib/images/planet-saturn-internal.svg';
 	import UranusStructure from '$lib/images/planet-uranus-internal.svg';
-	import VenusStructure from '$lib/images/planet-venus-internal.svg'
-	// import GeologyEarth from '$lib/images/geology-earth.png';
-	// import GeologyJupiter from '$lib/images/geology-jupiter.svg';
-	// import GeologyMars from '$lib/images/geology-mars.svg';
-	// import GeologyMercury from '$lib/images/geology-mercury.svg';
-	// import GeologyNeptune from '$lib/images/geology-neptune.svg';
-	// import GeologySaturn from '$lib/images/geology-saturn.svg';
-	// import GeologyUranus from '$lib/images/geology-uranus.svg';
-	// import GeologyVenus from '$lib/images/geology-venus.svg'
+	import VenusStructure from '$lib/images/planet-venus-internal.svg';
+	import GeologyEarth from '$lib/images/geology-earth.png';
+	import GeologyJupiter from '$lib/images/geology-jupiter.png';
+	import GeologyMars from '$lib/images/geology-mars.png';
+	import GeologyMercury from '$lib/images/geology-mercury.png';
+	import GeologyNeptune from '$lib/images/geology-neptune.png';
+	import GeologySaturn from '$lib/images/geology-saturn.png';
+	import GeologyUranus from '$lib/images/geology-uranus.png';
+	import GeologyVenus from '$lib/images/geology-venus.png';
+
+	function formatRotation(rotationInMilliseconds: number) {
+		const hours = rotationInMilliseconds / 3600 / 1000;
+		return `${hours.toFixed(2)} hours`;
+	}
+
+	function formatRevolution(rotationInMilliseconds: number) {
+		const years = rotationInMilliseconds / (365.25 * 24 * 3600 * 1000);
+		return `${years.toFixed(2)} years`;
+	}
+
+	function formatLength(lengthInMeters: number) {
+		const kilometers = lengthInMeters / 1000;
+		return `${kilometers.toLocaleString('en-US')} km`;
+	}
 
 	export let data: PageData;
 
@@ -68,12 +83,10 @@
 			overview: Venus,
 			structure: VenusStructure,
 			geology: Venus
-		},
-	}
+		}
+	};
 
 	let activeTab = 'overview';
-
-
 
 	function setActiveTab(tab: string) {
 		activeTab = tab;
@@ -98,17 +111,21 @@
 		class="md:max-w-[1110px] w-full mx-auto flex md:flex-row md:justify-end md:items-center md:gap-[300px] md:pt-32 text-white sm:pt-12 sm:gap-9 sm:items-center sm:flex-col"
 	>
 		<div class="md:w-[400px] md:h-[400px] sm:w-[369px] sm:h-[369px]">
-			<img class="w-full" src={img[data.planet.id][activeTab]} alt={`planet - ${data.planet.name}`} />
+			<img
+				class="w-full"
+				src={img[data.planet.id][activeTab]}
+				alt={`planet - ${data.planet.name}`}
+			/>
 		</div>
 		<div
 			class="md:max-w-[350px] w-full flex md:flex-col md:gap-10 sm:max-w-full sm:flex-row sm:items-center sm:gap-[69px]"
 		>
 			<div class="flex flex-col gap-6 min-h-[155px] sm:max-w-[339px]">
-				<h1 class="text-[80px] uppercase">{data.planet.name}</h1>
-				<p class="text-sm leading-6">{data.planet.overview.content}</p>
+				<h1 class="font-['Antonio'] text-[80px] uppercase">{data.planet.name}</h1>
+				<p class="min-h-[155px] text-sm leading-6">{data.planet[`${activeTab}`].content}</p>
 				<div class="flex gap-2 items-center">
 					<p class="text-xs tracking-[2.5px] opacity-50 leading-6">Source :</p>
-					<a class="flex gap-2 items-center underline" href={data.planet.overview.source}>
+					<a class="flex gap-2 items-center underline" href={data.planet[`${activeTab}`].source}>
 						<p class="text-sm tracking-[2.5px] opacity-50 font-bold leading-6">Wikipedia</p>
 						<div class="">
 							<svg
@@ -132,25 +149,49 @@
 			</div>
 			<div class="w-full flex flex-col gap-4">
 				<button
-					class={`${activeTab === 'overview' ? 'active-tab' : ''} w-full flex justify-start items-center border-[1px] border-white border-opacity-20 py-3 pl-7 gap-7 transition-all duration-200 hover:bg-[#D8D8D8] hover:bg-opacity-20`}
+					class={`${activeTab === 'overview' ? 'active-tab' : ''} w-full flex justify-start items-center border-[1px] border-white border-opacity-20 md:py-3 md:pl-7 md:gap-7 sm:gap-4 sm:pl-5 sm:py-2 transition-all duration-200 hover:bg-[#D8D8D8] hover:bg-opacity-20`}
 					on:click={() => setActiveTab('overview')}
 				>
-					<p class="text-xs tracking-[2.5px] uppercase font-bold leading-6 opacity-50">01</p>
-					<p class="text-xs tracking-[2.5px] uppercase font-bold leading-6">Overview</p>
+					<p
+						class="md:text-xs md:tracking-[2.5px] uppercase font-bold leading-6 opacity-50 sm:text-[9px] sm:tracking-[1.9px]"
+					>
+						01
+					</p>
+					<p
+						class="md:text-xs md:tracking-[2.5px] uppercase font-bold leading-6 sm:text-[9px] sm:tracking-[1.9px]"
+					>
+						Overview
+					</p>
 				</button>
 				<button
-					class={`${activeTab === 'structure' ? 'active-tab' : ''} w-full flex justify-start items-center border-[1px] border-white border-opacity-20 py-3 pl-7 gap-7 transition-all duration-200 hover:bg-[#D8D8D8] hover:bg-opacity-20`}
+					class={`${activeTab === 'structure' ? 'active-tab' : ''} w-full flex justify-start items-center border-[1px] border-white border-opacity-20 md:py-3 md:pl-7 md:gap-7 sm:gap-4 sm:pl-5 sm:py-2 transition-all duration-200 hover:bg-[#D8D8D8] hover:bg-opacity-20`}
 					on:click={() => setActiveTab('structure')}
 				>
-					<p class="text-xs tracking-[2.5px] uppercase font-bold leading-6 opacity-50">02</p>
-					<p class="text-xs tracking-[2.5px] uppercase font-bold leading-6">Internal Structure</p>
+					<p
+						class="md:text-xs md:tracking-[2.5px] uppercase font-bold leading-6 opacity-50 sm:text-[9px] sm:tracking-[1.9px]"
+					>
+						02
+					</p>
+					<p
+						class="md:text-xs md:tracking-[2.5px] uppercase font-bold leading-6 sm:text-[9px] sm:tracking-[1.9px]"
+					>
+						Internal Structure
+					</p>
 				</button>
 				<button
-					class={`${activeTab === 'geology' ? 'active-tab' : ''} w-full flex justify-start items-center border-[1px] border-white border-opacity-20 py-3 pl-7 gap-7 transition-all duration-200 hover:bg-[#D8D8D8] hover:bg-opacity-20`}
+					class={`${activeTab === 'geology' ? 'active-tab' : ''} w-full flex justify-start items-center border-[1px] border-white border-opacity-20 md:py-3 md:pl-7 md:gap-7 sm:gap-4 sm:pl-5 sm:py-2 transition-all duration-200 hover:bg-[#D8D8D8] hover:bg-opacity-20`}
 					on:click={() => setActiveTab('geology')}
 				>
-					<p class="text-xs tracking-[2.5px] uppercase font-bold leading-6 opacity-50">03</p>
-					<p class="text-xs tracking-[2.5px] uppercase font-bold leading-6">Surface Geology</p>
+					<p
+						class="md:text-xs md:tracking-[2.5px] uppercase font-bold leading-6 opacity-50 sm:text-[9px] sm:tracking-[1.9px]"
+					>
+						03
+					</p>
+					<p
+						class="md:text-xs md:tracking-[2.5px] uppercase font-bold leading-6 sm:text-[9px] sm:tracking-[1.9px]"
+					>
+						Surface Geology
+					</p>
 				</button>
 			</div>
 		</div>
@@ -165,9 +206,9 @@
 				ROTATION TIME
 			</p>
 			<h3
-				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
+				class="font-['Antonio'] md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{formatRotation(data.planet.rotation)}
 			</h3>
 		</div>
 		<div
@@ -176,12 +217,12 @@
 			<p
 				class="md:text-[11px] md:tracking-[1px] opacity-50 font-bold leading-6 uppercase sm:text-[8px] sm:leading-[16px] sm:tracking-[0.72px]"
 			>
-				ROTATION TIME
+				REVOLUTION TIME
 			</p>
 			<h3
-				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
+				class="font-['Antonio'] md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{formatRevolution(data.planet.revolution)}
 			</h3>
 		</div>
 		<div
@@ -190,12 +231,12 @@
 			<p
 				class="md:text-[11px] md:tracking-[1px] opacity-50 font-bold leading-6 uppercase sm:text-[8px] sm:leading-[16px] sm:tracking-[0.72px]"
 			>
-				ROTATION TIME
+				radius
 			</p>
 			<h3
-				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
+				class="font-['Antonio'] md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{formatLength(data.planet.radius)}
 			</h3>
 		</div>
 		<div
@@ -204,12 +245,12 @@
 			<p
 				class="md:text-[11px] md:tracking-[1px] opacity-50 font-bold leading-6 uppercase sm:text-[8px] sm:leading-[16px] sm:tracking-[0.72px]"
 			>
-				ROTATION TIME
+				AVERAGE TEMP.
 			</p>
 			<h3
-				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
+				class="font-['Antonio'] md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{data.planet.temperature}°c
 			</h3>
 		</div>
 	</div>
