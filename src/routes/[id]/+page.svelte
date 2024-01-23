@@ -28,6 +28,18 @@
 
 	export let data: PageData;
 
+	function getFormattedTime(ms: number) {
+		const hs = ms / 1000 / 60 / 60;
+		if (hs <= 24) {
+			return hs.toFixed(2) + ' hours';
+		}
+		const days = hs / 24;
+		if (days <= 366) {
+			return days.toFixed(2) + ' days';
+		}
+		return (days / 365).toFixed(2) + ' years';
+	}
+
 	const img = {
 		earth: {
 			overview: Earth,
@@ -72,8 +84,6 @@
 	}
 
 	let activeTab = 'overview';
-
-
 
 	function setActiveTab(tab: string) {
 		activeTab = tab;
@@ -167,7 +177,7 @@
 			<h3
 				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{getFormattedTime(data.planet.rotation)}
 			</h3>
 		</div>
 		<div
@@ -176,12 +186,12 @@
 			<p
 				class="md:text-[11px] md:tracking-[1px] opacity-50 font-bold leading-6 uppercase sm:text-[8px] sm:leading-[16px] sm:tracking-[0.72px]"
 			>
-				ROTATION TIME
+				Revolution Time
 			</p>
 			<h3
 				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{getFormattedTime(data.planet.revolution)}
 			</h3>
 		</div>
 		<div
@@ -190,12 +200,12 @@
 			<p
 				class="md:text-[11px] md:tracking-[1px] opacity-50 font-bold leading-6 uppercase sm:text-[8px] sm:leading-[16px] sm:tracking-[0.72px]"
 			>
-				ROTATION TIME
+				Radius
 			</p>
 			<h3
 				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{data.planet.radius / 1000} KM
 			</h3>
 		</div>
 		<div
@@ -204,12 +214,12 @@
 			<p
 				class="md:text-[11px] md:tracking-[1px] opacity-50 font-bold leading-6 uppercase sm:text-[8px] sm:leading-[16px] sm:tracking-[0.72px]"
 			>
-				ROTATION TIME
+				Average Temp.
 			</p>
 			<h3
 				class="md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				58.6 days
+				{data.planet.temperature}°c
 			</h3>
 		</div>
 	</div>
