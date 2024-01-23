@@ -1,10 +1,79 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
-	import Mercury from '../../lib/images/planet-mercury.svg';
+	import Earth from '$lib/images/planet-earth.svg';
+	import Jupiter from '$lib/images/planet-jupiter.svg';
+	import Mars from '$lib/images/planet-mars.svg';
+	import Mercury from '$lib/images/planet-mercury.svg';
+	import Neptune from '$lib/images/planet-neptune.svg';
+	import Saturn from '$lib/images/planet-saturn.svg';
+	import Uranus from '$lib/images/planet-uranus.svg';
+	import Venus from '$lib/images/planet-venus.svg'
+	import EarthStructure from '$lib/images/planet-earth-internal.svg';
+	import JupiterStructure from '$lib/images/planet-jupiter-internal.svg';
+	import MarsStructure from '$lib/images/planet-mars-internal.svg';
+	import MercuryStructure from '$lib/images/planet-mercury-internal.svg';
+	import NeptuneStructure from '$lib/images/planet-neptune-internal.svg';
+	import SaturnStructure from '$lib/images/planet-saturn-internal.svg';
+	import UranusStructure from '$lib/images/planet-uranus-internal.svg';
+	import VenusStructure from '$lib/images/planet-venus-internal.svg'
+	// import GeologyEarth from '$lib/images/geology-earth.png';
+	// import GeologyJupiter from '$lib/images/geology-jupiter.svg';
+	// import GeologyMars from '$lib/images/geology-mars.svg';
+	// import GeologyMercury from '$lib/images/geology-mercury.svg';
+	// import GeologyNeptune from '$lib/images/geology-neptune.svg';
+	// import GeologySaturn from '$lib/images/geology-saturn.svg';
+	// import GeologyUranus from '$lib/images/geology-uranus.svg';
+	// import GeologyVenus from '$lib/images/geology-venus.svg'
 
 	export let data: PageData;
+
+	const img = {
+		earth: {
+			overview: Earth,
+			structure: EarthStructure,
+			geology: Earth
+		},
+		jupiter: {
+			overview: Jupiter,
+			structure: JupiterStructure,
+			geology: Jupiter
+		},
+		mars: {
+			overview: Mars,
+			structure: MarsStructure,
+			geology: Mars
+		},
+		mercury: {
+			overview: Mercury,
+			structure: MercuryStructure,
+			geology: Mercury
+		},
+		neptune: {
+			overview: Neptune,
+			structure: NeptuneStructure,
+			geology: Neptune
+		},
+		saturn: {
+			overview: Saturn,
+			structure: SaturnStructure,
+			geology: Saturn
+		},
+		uranus: {
+			overview: Uranus,
+			structure: UranusStructure,
+			geology: Uranus
+		},
+		venus: {
+			overview: Venus,
+			structure: VenusStructure,
+			geology: Venus
+		},
+	}
+
 	let activeTab = 'overview';
+
+
 
 	function setActiveTab(tab: string) {
 		activeTab = tab;
@@ -29,7 +98,7 @@
 		class="md:max-w-[1110px] w-full mx-auto flex md:flex-row md:justify-end md:items-center md:gap-[300px] md:pt-32 text-white sm:pt-12 sm:gap-9 sm:items-center sm:flex-col"
 	>
 		<div class="md:w-[400px] md:h-[400px] sm:w-[369px] sm:h-[369px]">
-			<img class="w-full" src={Mercury} alt={`planet - ${data.planet.name}`} />
+			<img class="w-full" src={img[data.planet.id][activeTab]} alt={`planet - ${data.planet.name}`} />
 		</div>
 		<div
 			class="md:max-w-[350px] w-full flex md:flex-col md:gap-10 sm:max-w-full sm:flex-row sm:items-center sm:gap-[69px]"
