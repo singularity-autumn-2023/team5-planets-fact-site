@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
 	import Earth from '$lib/images/planet-earth.svg';
 	import Jupiter from '$lib/images/planet-jupiter.svg';
 	import Mars from '$lib/images/planet-mars.svg';
@@ -26,6 +25,24 @@
 	import GeologyUranus from '$lib/images/geology-uranus.png';
 	import GeologyVenus from '$lib/images/geology-venus.png';
 
+	type PlanetImages = {
+		overview: string;
+		structure: string;
+		geology: string;
+	};
+
+	type PlanetImagesObject = {
+		[key in
+			| 'earth'
+			| 'jupiter'
+			| 'mars'
+			| 'mercury'
+			| 'neptune'
+			| 'saturn'
+			| 'uranus'
+			| 'venus']: PlanetImages;
+	};
+
 	function formatRotation(rotationInMilliseconds: number) {
 		const hours = rotationInMilliseconds / 3600 / 1000;
 		return `${hours.toFixed(2)} hours`;
@@ -33,7 +50,6 @@
 
 	function formatRevolution(rotationInMilliseconds: number) {
 		const years = rotationInMilliseconds / (365.25 * 24 * 3600 * 1000);
-		return `${years.toFixed(2)} years`;
 	}
 
 	function formatLength(lengthInMeters: number) {
@@ -42,8 +58,9 @@
 	}
 
 	export let data: PageData;
+	$: revolution = `${(data.planet.revolution / (365.25 * 24 * 3600 * 1000)).toFixed(2)} years`;
 
-	const img = {
+	const img: PlanetImagesObject = {
 		earth: {
 			overview: Earth,
 			structure: EarthStructure,
@@ -222,7 +239,7 @@
 			<h3
 				class="font-['Antonio'] md:text-[40px] md:tracking-[-1.5px] md:leading-[52px] uppercase sm:text-2xl sm:tracking-[-0.9px]"
 			>
-				{formatRevolution(data.planet.revolution)}
+				{revolution}
 			</h3>
 		</div>
 		<div

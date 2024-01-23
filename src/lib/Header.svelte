@@ -51,8 +51,6 @@
 	{/if}
 </header>
 
-<!-- </body> -->
-
 <style>
 	.header_logo {
 		color: #fff;
