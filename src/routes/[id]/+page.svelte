@@ -47,42 +47,42 @@
 		earth: {
 			overview: Earth,
 			structure: EarthStructure,
-			geology: Earth
+			geology: GeologyEarth
 		},
 		jupiter: {
 			overview: Jupiter,
 			structure: JupiterStructure,
-			geology: Jupiter
+			geology: GeologyJupiter
 		},
 		mars: {
 			overview: Mars,
 			structure: MarsStructure,
-			geology: Mars
+			geology: GeologyMars
 		},
 		mercury: {
 			overview: Mercury,
 			structure: MercuryStructure,
-			geology: Mercury
+			geology: GeologyMercury
 		},
 		neptune: {
 			overview: Neptune,
 			structure: NeptuneStructure,
-			geology: Neptune
+			geology: GeologyNeptune
 		},
 		saturn: {
 			overview: Saturn,
 			structure: SaturnStructure,
-			geology: Saturn
+			geology: GeologySaturn
 		},
 		uranus: {
 			overview: Uranus,
 			structure: UranusStructure,
-			geology: Uranus
+			geology: GeologyUranus
 		},
 		venus: {
 			overview: Venus,
 			structure: VenusStructure,
-			geology: Venus
+			geology: GeologyVenus
 		}
 	};
 
@@ -91,31 +91,31 @@
 	function setActiveTab(tab: string) {
 		activeTab = tab;
 	}
-
-	function getTabContent(tab: string) {
-		switch (tab) {
-			case 'overview':
-				return data.planet.overview?.content;
-			case 'structure':
-				return data.planet.structure?.content;
-			case 'geology':
-				return data.planet.geology?.content;
-			default:
-				return null;
-		}
-	}
 </script>
 
 <div class="md:max-w-[1110px] w-full mx-auto flex md:flex-col md:gap-20 px-10 sm:gap-7 sm:flex-col">
 	<div
 		class="md:max-w-[1110px] w-full mx-auto flex md:flex-row md:justify-end md:items-center md:gap-[300px] md:pt-32 text-white sm:pt-12 sm:gap-9 sm:items-center sm:flex-col"
 	>
-		<div class="md:w-[400px] md:h-[400px] sm:w-[369px] sm:h-[369px]">
-			<img
-				class="w-full"
-				src={img[data.planet.id][activeTab]}
-				alt={`planet - ${data.planet.name}`}
-			/>
+		<div class="md:w-[400px] md:h-[400px] sm:w-[369px] sm:h-[369px] relative">
+			{#if activeTab === 'geology'}
+				<img
+					class="w-full"
+					src={img[data.planet.id]['overview']}
+					alt={`planet - ${data.planet.name} - Geology`}
+				/>
+				<img
+					class="w-[169px] h-[199px] absolute bottom-[-70px] left-1/2 transform -translate-x-1/2"
+					src={img[data.planet.id][activeTab]}
+					alt={`planet - ${data.planet.name} - Geology`}
+				/>
+			{:else}
+				<img
+					class="w-full"
+					src={img[data.planet.id][activeTab]}
+					alt={`planet - ${data.planet.name} - ${activeTab}`}
+				/>
+			{/if}
 		</div>
 		<div
 			class="md:max-w-[350px] w-full flex md:flex-col md:gap-10 sm:max-w-full sm:flex-row sm:items-center sm:gap-[69px]"
