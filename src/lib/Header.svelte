@@ -20,7 +20,7 @@
 >
 	<div class="header-content">
 		<div>
-			<h2 class="header_logo">THE PLANETS</h2>
+			<a href="/"><h2 class="header_logo">THE PLANETS</h2></a>
 		</div>
 		<div class="header_menu">
 			<ul>
