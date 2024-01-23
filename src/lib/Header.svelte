@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../app.css';
 	export let planets: {
 		id: string;
 		name: string;
@@ -10,47 +11,49 @@
 		isMobileMenuOpen = !isMobileMenuOpen;
 	}
 
-	function handlePlanetClick() {
-	}
+	function handlePlanetClick() {}
 </script>
 
-<body>
-	<header>
-		<div class="header-content">
-			<div>
-				<h2 class="header_logo">THE PLANETS</h2>
-			</div>
-			<div class="header_menu">
-				<ul>
-					{#each planets as planet}
-						<li>
-							<a href="/{planet.id}">{planet.name}</a>
-						</li>
-					{/each}
-				</ul>
-			</div>
-			<button type="button" class="mobile-menu-button" on:click={toggleMobileMenu} aria-expanded={isMobileMenuOpen}>
-				<img src="src/lib/images/Group.svg" alt="Menu">
-			  </button>
+<!-- <body> -->
+<header
+	class="max-w-[1440px] w-full mx-auto pl-8 pr-10 pt-5 pb-7 border-b-[1px] border-white border-opacity-20"
+>
+	<div class="header-content">
+		<div>
+			<h2 class="header_logo">THE PLANETS</h2>
 		</div>
-
-		<!-- Мобильное меню -->
-		{#if isMobileMenuOpen}
-			<div id="mobile-dropdown" class="mobile-dropdown">
+		<div class="header_menu">
+			<ul>
 				{#each planets as planet}
-					<a href="/{planet.id}" on:click={handlePlanetClick}>{planet.name}</a>
+					<li>
+						<a href="/{planet.id}">{planet.name}</a>
+					</li>
 				{/each}
-			</div>
-		{/if}
-	</header>
-</body>
+			</ul>
+		</div>
+		<button
+			type="button"
+			class="mobile-menu-button"
+			on:click={toggleMobileMenu}
+			aria-expanded={isMobileMenuOpen}
+		>
+			<img src="src/lib/images/Group.svg" alt="Menu" />
+		</button>
+	</div>
+
+	<!-- Мобильное меню -->
+	{#if isMobileMenuOpen}
+		<div id="mobile-dropdown" class="mobile-dropdown">
+			{#each planets as planet}
+				<a href="/{planet.id}" on:click={handlePlanetClick}>{planet.name}</a>
+			{/each}
+		</div>
+	{/if}
+</header>
+
+<!-- </body> -->
 
 <style>
-	body {
-		background: url('/src/lib/images/background-stars.svg'), #070724;
-		margin: 0;
-	}
-
 	.header_logo {
 		color: #fff;
 		font-family: 'Antonio', sans-serif;
@@ -84,11 +87,12 @@
 		padding: 0;
 		margin: 0;
 		display: flex;
+		gap: 2.06rem;
 	}
 
-	li {
+	/* li {
 		margin-right: 2.06rem;
-	}
+	} */
 
 	a {
 		text-decoration: none;

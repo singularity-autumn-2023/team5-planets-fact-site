@@ -5,6 +5,6 @@
 	export let data: LayoutData;
 </script>
 
-<Header planets={data.planets}/>
+<Header planets={data.planets} />
 
 <slot />
